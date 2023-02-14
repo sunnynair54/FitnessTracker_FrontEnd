@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Reem+Kufi+Ink&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Creepster', cursive;
+    background-image: url(https://messengernews.fb.com/wp-content/uploads/2021/11/ST360_03_MindFlayer.png?w=1920&h=1080&crop=1);
+
+}
+
+.mainTitle {
+    font-size: xx-large;
+    color: rgb(198, 80, 80);
+
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: black;
+
+
+}
+
+.posts_info {
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(214, 206, 206);
+    margin: auto;
+
+    width: 50%;
+    padding: 20px;
+    justify-content: space-evenly
+}
+
+.postTitle,
+.postAuthor,
+.postPrice,
+.postDescription {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.HomeLink,
+.PostsLink,
+.ProfileLink,
+.Logbutton {
+    color: rgb(198, 80, 80);
+    width: auto;
+
+}
+
+
+.logout {
+    color: rgb(93, 79, 250);
+    font-size: large;
+    cursor: pointer;
+}
+
+.logout:hover {
+    color: rgb(254, 254, 254);
+}
+
+.searchBar {
+    float: right;
+    color: rgb(198, 80, 80);
+    font-size: larger;
+    margin-right: 2%;
+}
+
+.CreatePostLink {
+    color: rgb(198, 80, 80);
+    margin-left: 5%;
+    font-size: larger;
+    cursor: pointer;
+}
+
+
+
+
+.username {
+    color: rgb(198, 80, 80);
+}
+
+.messageButton {
+    color: green;
+    font-size: large;
+    cursor: pointer;
+}
+
+.messageButton:hover {
+    color: rgb(225, 236, 60);
+    font-size: large;
+}
+
+.deleteButton {
+    float: right;
+    color: rgb(225, 236, 60);
+    font-size: x-large;
+    border-bottom: 20px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    color: rgb(255, 2, 2);
+}
+
+.signupMessage {
+    padding-left: 10px;
+    color: rgb(198, 80, 80);
+}
+
+.signupLink {
+    color: lightblue;
+}
+
+.logCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+
+}
+
+.user,
+.password {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.signUpCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+}
+
+.passwordText,
+.usernameText {
+    color: rgb(255, 241, 116);
+    font-size: large;
+}
+
+.passInput,
+.userInput {
+    color: rgb(198, 80, 80);
+    font-size: large;
+}
+
+.signInError {
+    color: orange;
+}
+
+.logInButton {
+    color: rgb(198, 80, 80);
+    float: right;
+    padding-right: 5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.logInButton:hover {
+    color: red;
+}
+
+.createButton {
+    color: rgb(198, 80, 80);
+    float: right;
+    padding-top: 10px;
+    padding-right: 5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.createButton:hover {
+    color: red;
+}
+
+.createPostCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+}
+
+.postCreate {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.titleLabel,
+.descriptionLabel,
+.priceLabel {
+    color: rgb(255, 241, 116);
+    font-size: large;
+
+}
+
+.titleInput,
+.descriptionInput,
+.priceInput {
+    color: rgb(198, 80, 80);
+    font-size: large;
+}
+
+.Welcome {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.welcomeBanner,
+.secondBanner,
+.descriptionBanner {
+    color: rgb(198, 80, 80);
+    padding: 10px;
+
+}
+
+.logInSignUp {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+}
+
+.logInSignUpButton {
+    color: lightblue;
+}
+
+.logInSignUp2 {
+    display: flex;
+    float: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    font-size: x-large;
+
+}
+
+.logInSignUpButton2 {
+    color: lightblue;
+}
+
+.sendAMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+}
+
+.message {
+    color: rgb(255, 241, 116);
+    font-size: large;
+}
+
+.messageContent {
+    color: rgb(198, 80, 80);
+    font-size: large;
+}
+
+.messageCreate {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.sendMessageButton {
+    color: rgb(198, 80, 80);
+    float: right;
+    padding-top: 10px;
+    padding-right: 5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.gotMessages {
+    color: rgb(255, 241, 116);
+    font-size: large;
+}
