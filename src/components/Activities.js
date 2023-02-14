@@ -9,7 +9,7 @@ import { async } from "q";
 
 
 
-const Posts = ({ token, setPostId }) => {
+const Activities = ({ token, setPostId }) => {
   const [posts, setPosts] = useState([]);
   const [searching, setSearching] = useState('');
 
@@ -19,10 +19,9 @@ const Posts = ({ token, setPostId }) => {
 
 
   const fetchpost = async () => {
-    const res = await fetch(`${APIURL}/posts`, {
+    const res = await fetch(`${APIURL}/api/activities`, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       }
     });
 
@@ -60,15 +59,6 @@ const Posts = ({ token, setPostId }) => {
     setPostId(id)
   }
 
-  const searchPosts = () => {
-    for (const element of posts) {
-      return (posts.title)
-    };
-
-    console.log(searching)
-
-
-  }
   // const handleSearch = (event) => {
   //   event.preventDefault()
   //   setSearching(event.target.value);
@@ -117,4 +107,4 @@ const Posts = ({ token, setPostId }) => {
 };
 
 
-export default Posts;
+export default Activities;

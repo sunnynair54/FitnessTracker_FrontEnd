@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { APIURL } from "..";
 
 
-const CreatePost = ({ token }) => {
+const CreateRoutine = ({ token }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -100,4 +100,4 @@ const CreatePost = ({ token }) => {
 }
 
 
-export default CreatePost;
+export default CreateRoutine;

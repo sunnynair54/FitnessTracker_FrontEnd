@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import { Home, Login, Posts, Profile, Signup, CreatePost, Send_a_message } from "./components";
+import { Home, Login, MyRoutines, Signup, CreateRoutine, CreateActivity, Activities, Send_a_message } from "./components";
+import Routines from "./components/Routines";
 
 
 export const APIURL =
-  "https://20a4d1385484.ngrok.io/api/2209-FTB-CT-WEB-PT";
+  "https://fitnesstrac-kr.herokuapp.com/";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("myToken"));
@@ -13,7 +14,8 @@ const App = () => {
     setToken(token);
     localStorage.setItem("myToken", token);
   };
-  const [postId, setPostId] = useState('')
+  const [routineId, setRoutineId] = useState('')
+  const [activityId, setActivityId] = useState('')
 
 
   const removeToken = () => {
@@ -30,16 +32,18 @@ const App = () => {
       <div>
         <header>
           <nav className="nav">
-            <h1 className="mainTitle">Stranger's Things</h1>
+            <h1 className="mainTitle">Fitness Tracker</h1>
             <h2 className="Links">
               <div><Link className="HomeLink" to="/Home">Home</Link></div>
-              <div><Link className="PostsLink" to="/Posts">Posts</Link></div>
-              <Link to="/Profile"><div className="ProfileLink">
-                {token === null ? '' : 'Profile'}
+              <div><Link className="RoutineLink" to="/Routines">Routines</Link></div>
+              <div><Link className="MyRoutinesLink" to="/MyRoutines">MyRoutines</Link></div>
+              <div><Link className="ActivitiesLink" to="/Activities">Activities</Link></div>
+              <Link to="/MyRoutines"><div className="MyRoutineLink">
+                {token === null ? '' : 'MyRoutine'}
               </div></Link>
               <Link to="/Login">
                 <div className="Logbutton">
-                  {token === null ? "Login" : <button className="logout" onClick={removeToken}>LogOut</button>}
+                  {token === null ? "Login/Signup" : <button className="logout" onClick={removeToken}>LogOut</button>}
                 </div>
               </Link>
             </h2>
@@ -50,13 +54,13 @@ const App = () => {
               <Route exact path="/Home">
                 <Home token={token} />
               </Route>
-              <Route path="/Posts">
-                <Posts token={token}
-                  setPostId={setPostId} />
+              <Route path="/Routines">
+                <Routines token={token}
+                  setRoutineId={setRoutineId} />
               </Route>
-              <Route path="/Profile">
-                <Profile token={token}
-                  postId={postId} />
+              <Route path="/MyRoutines">
+                <MyRoutines token={token}
+                  routineId={routineId} />
               </Route>
               <Route path="/Login">
                 <Login setToken={saveToken} token={token} />
@@ -64,12 +68,17 @@ const App = () => {
               <Route path="/Signup">
                 <Signup setToken={saveToken} />
               </Route>
-              <Route path="/CreatePost">
-                <CreatePost token={token} />
+              <Route path="/CreateRoutine">
+                <CreateRoutine token={token} />
               </Route>
-              <Route path="/Send_a_message">
-                <Send_a_message token={token}
-                  postId={postId} />
+              <Route path="/CreateActivity">
+                <CreateActivity token={token} />
+              </Route>
+              <Route path="/Activities">
+                <Activities
+                  token={token}
+                  routineId={routineId}
+                  activityId={activityId} />
               </Route>
             </Switch>
           </div>

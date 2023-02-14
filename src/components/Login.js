@@ -16,7 +16,7 @@ const Login = ({ setToken }) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${APIURL}/users/login`, {
+      const response = await fetch(`${APIURL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

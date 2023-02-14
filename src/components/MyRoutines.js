@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { APIURL } from "..";
 
-const Profile = ({ token }) => {
+const MyRoutines = ({ token }) => {
 
   const [myPosts, setMyPosts] = useState([])
 
@@ -85,4 +85,4 @@ const Profile = ({ token }) => {
 };
 
 
-export default Profile;
+export default MyRoutines;
