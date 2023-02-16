@@ -7,15 +7,15 @@ export const signup = async (username, password) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      user: {
-        username,
-        password,
-      },
+      username,
+      password,
+
     }),
   });
   const json = await response.json();
-  if (json.success === false) {
-    throw json.error.message;
+  if (json.error) {
+    throw json.error;
   }
-  return json.data.token;
+  console.log(json.token)
+  return json.token;
 };

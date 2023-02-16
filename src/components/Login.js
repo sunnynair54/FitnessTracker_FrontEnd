@@ -16,25 +16,23 @@ const Login = ({ setToken }) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${APIURL}/api/users/login`, {
+      const response = await fetch(`${APIURL}api/users/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user: {
-            username,
-            password,
-          },
+          username,
+          password
         }),
       });
       const json = await response.json();
-      if (json.success === false) {
-        throw json.error.message;
+      if (json.error) {
+        throw json.error;
       }
 
       alert("Login successful");
-      setToken(json.data.token);
+      setToken(json.token);
       history.push("/Posts");
     } catch (e) {
       console.error(e);

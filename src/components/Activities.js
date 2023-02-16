@@ -5,82 +5,65 @@ import { async } from "q";
 
 
 
+const Activities = ({ token, setActivityId }) => {
+  const [activities, setActivities] = useState([]);
 
-
-
-
-const Activities = ({ token, setPostId }) => {
-  const [posts, setPosts] = useState([]);
-  const [searching, setSearching] = useState('');
 
   useEffect(() => {
-    fetchpost()
+    fetchActivities()
   }, []);
 
 
-  const fetchpost = async () => {
-    const res = await fetch(`${APIURL}/api/activities`, {
+  const fetchActivities = async () => {
+    const res = await fetch(`${APIURL}api/activities`, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
 
     const data = await res.json();
-    setPosts(data.data.posts);
-    console.log(data.data.posts)
+    setActivities(data);
+    console.log("data", data)
 
     // console.log(data);
   };
   //   console.log(posts.title);
 
-  const handleDelete = async (id) => {
-    await postDelete(id)
-    fetchpost()
-  }
+  // const handleDelete = async (id) => {
+  //   await postDelete(id)
+  //   fetchActivities()
+  // }
 
-  const postDelete = async (id) => {
-    try {
-      const response = await fetch(`${APIURL}/posts/${id}`, {
-        method: "DELETE",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
+  // const activityDelete = async (id) => {
+  //   try {
+  //     const response = await fetch(`${APIURL}/posts/${id}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     });
 
-      const deletedPost = await response.json();
-      console.log(deletedPost);
-    } catch (error) {
-      console.log('err'.err);
-    }
-  };
+  //     const deletedPost = await response.json();
+  //     console.log(deletedPost);
+  //   } catch (error) {
+  //     console.log('err'.err);
+  //   }
+  // };
 
   const handleMessage = (id) => {
-    setPostId(id)
+    setActivityId(id)
   }
 
-  // const handleSearch = (event) => {
-  //   event.preventDefault()
-  //   setSearching(event.target.value);
-  // };
+
 
 
   return (
     <>
       {token === null ? '' : <Link className="CreatePostLink" to="/CreatePost">Create Strange New Post</Link>}
-      <input
-        className="searchBar"
-        type="text"
-        placeholder="Search Strange Things?"
-        value={searching}
-        onChange={(event) => {
-          setSearching(event.target.value)
-          searchPosts()
-          console.log(searching)
-        }}
-      ></input>
       <div className="postBody">
-        {posts.reverse().map((post) => {
+        {/* {activities.reverse().map((activity) => {
           return (
             <div className="posts_info" key={post._id}>
               <h2 className="postTitle">Title: {post.title}</h2>
@@ -101,7 +84,7 @@ const Activities = ({ token, setPostId }) => {
               </div>}
             </div>
           );
-        })}
+        })} */}
       </div></>
   );
 };
