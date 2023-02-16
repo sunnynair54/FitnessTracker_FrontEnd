@@ -1,119 +1,185 @@
 import React, { useEffect, useState } from "react";
 import { APIURL } from "..";
-import { Link } from "react-router-dom";
 import { async } from "q";
+import MyRoutines from "./MyRoutines";
 
+const Routines = () => {
+    const [routines, setRoutines] = useState([])
 
+    const token = localStorage.getItem("userToken");
 
-
-
-
-
-const Routines = ({ token, setPostId }) => {
-  const [posts, setPosts] = useState([]);
-  const [searching, setSearching] = useState('');
-
-  useEffect(() => {
-    fetchpost()
-  }, []);
-
-
-  const fetchpost = async () => {
-    const res = await fetch(`${APIURL}/api/routines`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    const data = await res.json();
-    setPosts(data.data.posts);
-    console.log(data.data.posts)
-
-    // console.log(data);
-  };
-  //   console.log(posts.title);
-
-  const handleDelete = async (id) => {
-    await postDelete(id)
-    fetchpost()
-  }
-
-  const postDelete = async (id) => {
-    try {
-      const response = await fetch(`${APIURL}/posts/${id}`, {
-        method: "DELETE",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+    useEffect(() => {
+        const fetchRoutines = async() => {
+            const response = await fetch(" http://fitnesstrac-kr.herokuapp.com/api/routines")
+                .then(response => response.json())
+                .then(result => {
+                    setRoutines(result)
+                })
+                .catch(console.error)
         }
-      });
+        fetchRoutines()
+    }, [])
 
-      const deletedPost = await response.json();
-      console.log(deletedPost);
-    } catch (error) {
-      console.log('err'.err);
-    }
-  };
+    return (
+        <>
+            <div id = "logoutRoutines">
 
-  const handleMessage = (id) => {
-    setPostId(id)
-  }
+                <h1>All Routines</h1>
 
-  const searchPosts = () => {
-    for (const element of posts) {
-      return (posts.title)
-    };
-
-    console.log(searching)
+                {
+                    token ? <MyRoutines routines={routines} setRoutines={setRoutines} /> : <></>
+                }
 
 
-  }
-  // const handleSearch = (event) => {
-  //   event.preventDefault()
-  //   setSearching(event.target.value);
-  // };
+                {
+                    routines.map((routine) => (
+                        <div key={routine.id}><br></br>
+                            <h2>Name: {routine.name}</h2>
+                            <h2>Goal: {routine.goal}</h2>
+                            <h2>Creator Name: {routine.creatorName}</h2>
 
+                            {
+                                routine.activities.map(activity =>
+                                    <div key={activity.id}>
+                                        <h2>Activities {activity.id}</h2>
+                                        <h3>Name: {activity.name}</h3>
+                                        <h3>Description: {activity.description}</h3>
+                                        <h3>Duration: {activity.duration}</h3>
+                                        <h3>Count: {activity.count}</h3>
+                                    </div> 
+                                    )
+                            }
+                            
+                        </div>
 
-  return (
-    <>
-      {token === null ? '' : <Link className="CreatePostLink" to="/CreatePost">Create Strange New Post</Link>}
-      <input
-        className="searchBar"
-        type="text"
-        placeholder="Search Strange Things?"
-        value={searching}
-        onChange={(event) => {
-          setSearching(event.target.value)
-          searchPosts()
-          console.log(searching)
-        }}
-      ></input>
-      <div className="postBody">
-        {posts.reverse().map((post) => {
-          return (
-            <div className="posts_info" key={post._id}>
-              <h2 className="postTitle">Title: {post.title}</h2>
-              <h3 className="postAuthor">Author: {post.author.username}</h3>
-              <h3 className="postPrice"> Price: ${post.price}</h3>
-              <h3 className="postDescription"> Description: {post.description}</h3>
-              <div className="username">
-                {post.isAuthor === true ? `Posted by you: ${post.author.username}` : ''}
+                    ))
+                }
 
-                {post.isAuthor === true ? <button className="deleteButton" onClick={() => handleDelete(post._id)} id='deleteButton'>Delete</button> : ''}
-
-              </div>
-              {token === null ? '' : <div>{
-                post.isAuthor === false ? <Link to="/Send_a_message">
-                  <button className="messageButton" onClick={() => handleMessage(post._id)}>Message</button>
-                </Link> : ''
-              }
-              </div>}
             </div>
-          );
-        })}
-      </div></>
-  );
-};
 
+        </>
+    )
+}
 
 export default Routines;
+// const getRoutines = async () => {
+//   try {
+//     const response = await fetch(`${APIURL}/routines`, {
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
+    
+//     const routines = await response.json();
+//     return routines;
+    
+//   }catch(error){
+    
+//   }
+// }
+
+// const createNewRoutine = async (rName, rGoal) => {
+//   const bodyData = {
+//     name: rName,
+//     goal: rGoal,
+//     isPublic: true
+//   }
+//   try{
+//     const response = await fetch(`${APIURL}/routines`, {
+//       method: 'POST',
+//       body: JSON.stringify(bodyData),
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: 'Bearer ' + localStorage.getItem("token")
+//       }
+//     })
+//   const newRoutine = await response.json() 
+//   return newRoutine 
+//   }catch(error){ 
+//     console.error(error) 
+//   }
+// }
+
+// const Routines = () => {
+//   const [routines, setRoutines] = useState([]);
+//   const [name, setName] = useState('');
+//   const [goal, setGoal] = useState('');
+//   const [editRoutine, setEditRoutine] = useState({});
+//   const token = localStorage.getItem("token");
+
+//   const loadRoutines = async() => {
+//       const routines = await getRoutines();
+//       setRoutines(routines);
+//   }
+
+//   (async () => {loadRoutines();
+//   }, []);
+
+//   const renderRoutines = () => {
+//       return (
+//         <div>
+//           {routines.map(routine => {
+//               const { name, id, creatorName, goal, activities } = routine;
+
+//               return (
+//                  <div key={id} style={{ paddingBottom: 20 }}>
+//                    <div>Name: {name}</div>
+//                    <div>Goal: {goal}</div>
+//                    <div> Creator name: {creatorName}</div>
+//                     <div>
+//                       <div>Activities for this routine:</div>
+//                        {activities.map(activity => {
+//                           const { id,description, duration, count, name } = activity;
+//                           return (
+//                               <div key={id} style={{ paddingTop: 20 }}>
+//                                   <div>Activity name: {name}</div>
+//                                   <div>Activity description: {description}</div>
+//                                   <div>Activity count: {count}</div>
+//                                   <div>Activity duration: {duration}</div>
+//                               </div>
+//                           )
+
+//                        })}
+//                     </div>
+//                  </div>
+//               );
+//            })}
+//         </div>
+//       )
+//   }
+
+//   const createRoutine = async () => {
+//       try {
+//           await createNewRoutine(name, goal);
+//           loadRoutines();
+//       } catch(err) {
+//           console.error("error creating: ", err);
+//       }
+//   }
+//   const renderForm = () => {
+//       return (
+//         <div>
+//           <div>Create a new Routine:</div>
+//           <div>
+//             Name: 
+//             <input type="text" value={name} onChange={e => setName(e.target.value)} />
+//           </div>
+//           <div>
+//             Goal: 
+//             <input type="text" value={goal} onChange={e => setGoal(e.target.value)} />
+//           </div>
+//           <button onClick={() => createRoutine()}>Create</button>
+//         </div>
+//       )};
+
+//   return (
+//     <>
+//       <div id="forms">
+//           {token ? renderForm() : <p>Please Log In to Create a New Routine</p>}
+//       </div>
+
+//       {renderRoutines()}
+//     </>
+//   );
+// };
+// export default Routines;
