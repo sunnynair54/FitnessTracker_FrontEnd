@@ -24,7 +24,7 @@ const Signup = ({ setToken }) => {
       const tokenInfo = await signup(username, password);
       alert("Signup successful");
       setToken(tokenInfo);
-      history.push("/Posts");
+      history.push("/Routines");
     } catch (e) {
       console.error(e)
       setError(e);
@@ -43,7 +43,7 @@ const Signup = ({ setToken }) => {
             type="text" required
             name="username"
             value={username}
-            minlength="5"
+            minLength="5"
             onChange={handleChange}
           />
         </div>
@@ -54,7 +54,7 @@ const Signup = ({ setToken }) => {
             type="password" required
             name="password"
             value={password}
-            minlength="5"
+            minLength="5"
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>

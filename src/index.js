@@ -78,7 +78,9 @@ const App = () => {
                 <Activities
                   token={token}
                   routineId={routineId}
-                  activityId={activityId} />
+                  setRoutineId={setRoutineId}
+                  activityId={activityId}
+                  setActivityId={setActivityId} />
               </Route>
             </Switch>
           </div>
