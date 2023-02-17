@@ -33,7 +33,7 @@ const Login = ({ setToken }) => {
 
       alert("Login successful");
       setToken(json.token);
-      history.push("/Posts");
+      history.push("/Routines");
     } catch (e) {
       console.error(e);
       setError(e);

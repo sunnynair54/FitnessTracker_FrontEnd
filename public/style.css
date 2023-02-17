@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Creepster', cursive;
-    background-image: url(https://messengernews.fb.com/wp-content/uploads/2021/11/ST360_03_MindFlayer.png?w=1920&h=1080&crop=1);
+    background-image: url(https://i.pinimg.com/originals/96/6a/7b/966a7b0fa51a0e145aa6b2fe8cd56923.jpg);
     color: white;
 }
 
@@ -161,6 +161,10 @@
 }
 
 .signInError {
+    color: orange;
+}
+
+.newActivityError {
     color: orange;
 }
 

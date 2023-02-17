@@ -5,7 +5,7 @@ import { async } from "q";
 
 
 
-const Activities = ({ token, setActivityId }) => {
+const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);
 
 
@@ -17,17 +17,16 @@ const Activities = ({ token, setActivityId }) => {
   const fetchActivities = async () => {
     const res = await fetch(`${APIURL}api/activities`, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       }
     });
 
     const data = await res.json();
     setActivities(data);
-    console.log("data", data)
+    // console.log(data)
 
-    // console.log(data);
   };
+
   //   console.log(posts.title);
 
   // const handleDelete = async (id) => {
@@ -52,39 +51,23 @@ const Activities = ({ token, setActivityId }) => {
   //   }
   // };
 
-  const handleMessage = (id) => {
-    setActivityId(id)
-  }
 
 
 
 
   return (
     <>
-      {token === null ? '' : <Link className="CreatePostLink" to="/CreatePost">Create Strange New Post</Link>}
+      {token !== null && <Link className="CreateActivityLink" to="/CreateActivities">Create New Activity</Link>}
       <div className="postBody">
-        {/* {activities.reverse().map((activity) => {
-          return (
-            <div className="posts_info" key={post._id}>
-              <h2 className="postTitle">Title: {post.title}</h2>
-              <h3 className="postAuthor">Author: {post.author.username}</h3>
-              <h3 className="postPrice"> Price: ${post.price}</h3>
-              <h3 className="postDescription"> Description: {post.description}</h3>
-              <div className="username">
-                {post.isAuthor === true ? `Posted by you: ${post.author.username}` : ''}
-
-                {post.isAuthor === true ? <button className="deleteButton" onClick={() => handleDelete(post._id)} id='deleteButton'>Delete</button> : ''}
-
+        {
+          activities.reverse().map((activity) => {
+            return (
+              <div className="activity_id" key={activity.id}>
+                <h2 className="activityName">Name: {activity.name}</h2>
+                <h3 className="activityDescription"> Description: {activity.description}</h3>
               </div>
-              {token === null ? '' : <div>{
-                post.isAuthor === false ? <Link to="/Send_a_message">
-                  <button className="messageButton" onClick={() => handleMessage(post._id)}>Message</button>
-                </Link> : ''
-              }
-              </div>}
-            </div>
-          );
-        })} */}
+            );
+          })}
       </div></>
   );
 };
