@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import { Home, Login, MyRoutines, Signup, CreateRoutine, CreateActivity, Activities, Send_a_message } from "./components";
+import { Home, Login, MyRoutines, Signup, CreateRoutine, CreateActivities, Activities, Send_a_message } from "./components";
 import Routines from "./components/Routines";
 
 
@@ -36,10 +36,9 @@ const App = () => {
             <h2 className="Links">
               <div><Link className="HomeLink" to="/Home">Home</Link></div>
               <div><Link className="RoutineLink" to="/Routines">Routines</Link></div>
-              <div><Link className="MyRoutinesLink" to="/MyRoutines">MyRoutines</Link></div>
               <div><Link className="ActivitiesLink" to="/Activities">Activities</Link></div>
               <Link to="/MyRoutines"><div className="MyRoutineLink">
-                {token === null ? '' : 'MyRoutine'}
+                {token === null ? '' : 'MyRoutines'}
               </div></Link>
               <Link to="/Login">
                 <div className="Logbutton">
@@ -73,8 +72,8 @@ const App = () => {
               <Route path="/CreateRoutine">
                 <CreateRoutine token={token} />
               </Route>
-              <Route path="/CreateActivity">
-                <CreateActivity token={token} />
+              <Route path="/CreateActivities">
+                <CreateActivities token={token} />
               </Route>
               <Route path="/Activities">
                 <Activities

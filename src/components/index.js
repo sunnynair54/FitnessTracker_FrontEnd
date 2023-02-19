@@ -5,5 +5,5 @@ export { default as Activities } from "./Activities.js";
 export { default as MyRoutines } from "./MyRoutines.js";
 export { default as Signup } from "./Signup.js";
 export { default as CreateRoutine } from "./CreateRoutine.js";
-export { default as CreateActivity } from "./CreateActivity.js";
+export { default as CreateActivities } from "./CreateActivities.js";
 export { default as Send_a_message } from "./Send_a_message.js";

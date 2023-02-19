@@ -14,6 +14,7 @@ const Routines = () => {
                 .then(response => response.json())
                 .then(result => {
                     setRoutines(result)
+                    console.log(result)
                 })
                 .catch(console.error)
         }
