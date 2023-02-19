@@ -12,49 +12,62 @@ const MyRoutines = ({routines, setRoutines}) => {
 
           const token = localStorage.getItem("userToken")
 
-          const response = await fetch("https://fitnesstrac-kr.herokuapp.com/api/routines", {
-              method: "POST",
-              headers: {
-                  "Content-Type" : "Application/json",
-                  "Authorization" : `Bearer ${token}`
-              },
-              body: JSON.stringify({
-                  name: name,
-                  goal: goal
-              })
-          })
-
-          const userName = '';
-          await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/me', {
-              headers: {
+          const addNewRoutine = async (token, { name, goal, isPublic }) => {
+            try {
+              const response = await fetch(`${APIURL}/routines`, {
+                method: "POST",
+                headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${token}`
-              },
-          }).then(response => response.json())
-          .then(result => {
-              userName = result.username;
-          })
-          .catch(console.error);
+                },
+                body: JSON.stringify({
+                  name: name,
+                  goal: goal,
+                  isPublic: isPublic,
+                })
+              })
+              const results = response.json();
+              return results
+            } catch (ex) {
+              console.log('Error adding new routine')
+            }
+          }
 
-
-          await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${userName}/routines`, {
-              headers: {
+          const userName= async (token) => {
+            try {
+              const response = await fetch(`${APIURL}/users/me`, {
+                headers: {
                   'Content-Type': 'application/json',
-              },
-          }).then(response => response.json())
-          .then(result => {
-              setMyRoutines(result);
-          })
-          .catch(console.error);   
+                  'Authorization': `Bearer ${token}`
+                },
+              })
           
-  }
+              const results = await response.json();
+              return results;
+            } catch (ex) {
+              console.log('Error getting user information')
+            }
+          }
 
-  // const handleUpdate = () => {
-      
-  // }
+          const getMyRoutines = async (token, user) => {
+            try {
+              const response = await fetch(`${APIURL}/api/users/${userName}/routines`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                }
+              })
+              const results = response.json();
+              return results;
+            } catch (ex) {
+              console.log('Error getting my routines')
+            }
+          }}
+          
+
 
   const handleDelete = async(routineIdToDelete) => {
-      const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineIdToDelete}`, {
+      const response = await fetch(`${APIURL}/api/routines/${routineIdToDelete}`, {
           method: "DELETE",
           headers: {
               'Content-Type': 'Application/json',
@@ -123,88 +136,3 @@ const MyRoutines = ({routines, setRoutines}) => {
 
 export default MyRoutines;
 
-// const MyRoutines = ({ token }) => {
-
-//   const [myPosts, setMyPosts] = useState([])
-
-
-//   const postedByMe = async () => {
-//     try {
-//       const res = await fetch(`${APIURL}/users/me`, {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${token}`
-//         }
-//       });
-//       const data = await res.json();
-//       console.log(data)
-//       setMyPosts(data.data.posts);
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-
-//   const postDelete = async (id) => {
-//     try {
-//       const response = await fetch(`${APIURL}/posts/${id}`, {
-//         method: "DELETE",
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${token}`
-//         }
-//       });
-
-//       const deletedPost = await response.json();
-//       console.log(deletedPost);
-//     } catch (error) {
-//       console.log('err'.err);
-//     }
-//   };
-
-//   const handleDelete = async (id) => {
-//     await postDelete(id)
-//     postedByMe()
-//   }
-
-//   useEffect(() => {
-//     postedByMe();
-
-//   }, []);
-
-//   return <>
-//     <div>
-//       {myPosts.filter((post) => {
-//         return post.active
-//       }).map((post, i) => {
-//         return (
-//           <div className="posts_info" key={i}>
-//             <h2 className="postTitle" >Title: {post.title}</h2>
-//             <h2 className="postPrice">Price: ${post.price}</h2>
-//             <h2 className="postDescription" >Description: {post.description}</h2>
-//             <div className="myMessages">
-//               {post.messages.map((message, i) => {
-//                 return (
-//                   <div key={i}>
-//                     <h3 className="gotMessages">message:</h3>
-//                     <h4 className="messageUserName">From: {message.fromUser.username}</h4>
-//                     <h4 className="messageContent">"{message.content}"</h4>
-
-//                   </div>)
-//               })
-//               }
-//             </div>
-
-
-//             <div>{post.active === true ? <button className="deleteButton" onClick={() => handleDelete(post._id)} >Delete</button> : ''}
-//             </div>
-//           </div>
-//         )
-
-//       })}
-//     </div>
-//   </>
-
-// };
-
-
-// export default MyRoutines;

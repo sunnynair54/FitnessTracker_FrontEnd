@@ -1,102 +1,79 @@
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
 import { APIURL } from "..";
 
-
-const CreateRoutine = ({ token }) => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const history = useHistory()
-
-
-    const handleTitle = (event) => {
-        setTitle(event.target.value);
-
+const addNewRoutine = async (token, { name, goal, isPublic }) => {
+    try {
+      const response = await fetch(`${APIURL}/routines`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          name: name,
+          goal: goal,
+          isPublic: isPublic,
+        })
+      })
+      const results = response.json();
+      return results
+    } catch (ex) {
+      console.log('Error adding new routine')
     }
-    const handleDescription = (event) => {
-        setDescription(event.target.value);
+  }
+  const CreateRoutine  = ({token}) => {
+    const [name, setName] = useState('')
+    const [goal, setGoal] = useState('')
+    const [isPublic, setIsPublic] = useState(false)
+    let navigate = useNavigate();
 
-    }
-    const handlePrice = (event) => {
-        setPrice(event.target.value);
-    }
-
-    const handleSubmit = async (event) => {
+    async function submitHandler(event) {
         event.preventDefault();
-
         try {
-
-            const response = await fetch(`${APIURL}/posts/`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    post: {
-                        title: title,
-                        description: description,
-                        price: price,
-
-                    }
-                })
-            });
-            const postData = await response.json();
-            console.log(postData);
-            setTitle(postData.data.post.title);
-            setDescription(postData.data.post.title);
-            setPrice(postData.data.post.price);
-
-
-
-        } catch (e) {
-            console.error(e);
-
+            const response = await addRoutine(token, name, goal, isPublic);
+            if (response) {
+                navigate('/myroutines');
+            }
         }
-        setTitle('')
-        setDescription('')
-        setPrice('')
-        history.push("/Posts")
-
+        catch (err) {
+            console.error(err);
+        }
     }
-    return (
-        <div className='createPostCenter'>
-            <form onSubmit={handleSubmit}>
-                <div className="postCreate">
-                    <label className="titleLabel" htmlFor="title">Title:</label>
-                    <input className="titleInput"
-                        type="text"
-                        name="Title"
-                        value={title}
-                        onChange={handleTitle}
-                    />
-                </div>
-
-                <div className="postCreate">
-                    <label className="descriptionLabel" htmlFor="description">Description:</label>
-                    <input className="descriptionInput"
-                        type="text"
-                        name="description"
-                        value={description}
-                        onChange={handleDescription}
-                    />
-                </div>
-
-                <div className="postCreate">
-                    <label className="priceLabel" htmlFor="price">Price:</label>
-                    <input className="priceInput"
-                        type="text"
-                        name="price"
-                        value={price}
-                        onChange={handlePrice}
-                    />
-                </div>
-
-                <button className="createButton" type="submit">Post!</button>
-            </form>
-        </div>
-    )
+    if (token !== '') {
+        return (
+            <div className="ms-5 mb-2" >
+                <header>
+                    <h3>Add Routine</h3>
+                </header>
+                <form onSubmit={submitHandler}>
+                    <div className="row mb-2">
+                        <label htmlFor="name" className="col-form-label">Name:</label>
+                        <div className="col-sm-5">
+                            <input type="text" id="name" className="form-control" onChange={event => setName(event.target.value)} required></input>
+                        </div>
+                    </div>
+                    <div className="row mb-2">
+                        <label htmlFor="goal" className="col-form-label">Goal:</label>
+                        <div className="col-sm-5">
+                            <textarea id="goal"  className="form-control" onChange={event => setGoal(event.target.value)} required></textarea>
+                        </div>
+                    </div>
+                    <div className="form-check mb-3">
+                        <input  className="form-check-input" type="checkbox" id="isPublic" 
+                        onChange={event => event.target.value === 'on' ? 
+                        setIsPublic(true) :
+                        setIsPublic(false)}></input>
+                        <label htmlFor="isPublic" className="form-check-label">Make Routine Public?</label>
+                    </div>
+                    <button type="submit" className="btn btn-primary me-2">Add Routine</button>
+                    <button className="btn btn-danger" onClick={() => navigate('/myroutines')}>Cancel</button>
+                </form>
+            </div>
+        )
+    }
+    else {
+        return <h1>Unauthorized</h1>
+    }
 }
 
 

@@ -60,7 +60,9 @@ const App = () => {
               </Route>
               <Route path="/MyRoutines">
                 <MyRoutines token={token}
-                  routineId={routineId} />
+                  routineId={routineId}
+
+                   />
               </Route>
               <Route path="/Login">
                 <Login setToken={saveToken} token={token} />
