@@ -9,7 +9,7 @@ const Routines = () => {
     const token = localStorage.getItem("userToken");
 
     useEffect(() => {
-        const fetchRoutines = async() => {
+        const fetchRoutines = async () => {
             const response = await fetch(" http://fitnesstrac-kr.herokuapp.com/api/routines")
                 .then(response => response.json())
                 .then(result => {
@@ -23,9 +23,9 @@ const Routines = () => {
 
     return (
         <>
-            <div id = "logoutRoutines">
+            <div className="logoutRoutines">
 
-                <h1>All Routines</h1>
+                <h1 classname="RoutineHeader" >All Routines</h1>
 
                 {
                     token ? <MyRoutines routines={routines} setRoutines={setRoutines} /> : <></>
@@ -35,22 +35,22 @@ const Routines = () => {
                 {
                     routines.map((routine) => (
                         <div key={routine.id}><br></br>
-                            <h2>Name: {routine.name}</h2>
-                            <h2>Goal: {routine.goal}</h2>
-                            <h2>Creator Name: {routine.creatorName}</h2>
+                            <h2 className="routineDetails">Name: {routine.name}</h2>
+                            <h2 className="routineDetails">Goal: {routine.goal}</h2>
+                            <h2 className="routineDetails">Creator Name: {routine.creatorName}</h2>
 
                             {
                                 routine.activities.map(activity =>
                                     <div key={activity.id}>
-                                        <h2>Activities {activity.id}</h2>
-                                        <h3>Name: {activity.name}</h3>
-                                        <h3>Description: {activity.description}</h3>
-                                        <h3>Duration: {activity.duration}</h3>
-                                        <h3>Count: {activity.count}</h3>
-                                    </div> 
-                                    )
+                                        <h2 className="routineActivityDetails">Activities {activity.id}</h2>
+                                        <h3 className="routineActivityDetails">Name: {activity.name}</h3>
+                                        <h3 className="routineActivityDetails">Description: {activity.description}</h3>
+                                        <h3 className="routineActivityDetails">Duration: {activity.duration}</h3>
+                                        <h3 className="routineActivityDetails">Count: {activity.count}</h3>
+                                    </div>
+                                )
                             }
-                            
+
                         </div>
 
                     ))

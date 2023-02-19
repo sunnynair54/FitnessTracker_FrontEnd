@@ -70,7 +70,7 @@ const Login = ({ setToken }) => {
         <button className="logInButton" type="submit">Login</button>
       </form>
       <div className="signInError">{error}</div>
-      <h2 className="signupMessage">Not a Stranger? <Link className="signupLink" to="/Signup">Signup</Link></h2>
+      <h2 className="signupMessage">Don't Have an Account? <Link className="signupLink" to="/Signup">Signup</Link></h2>
     </div>
   );
 };

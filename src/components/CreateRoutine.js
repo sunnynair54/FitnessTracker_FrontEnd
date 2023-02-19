@@ -3,25 +3,25 @@ import { APIURL } from "..";
 
 const addNewRoutine = async (token, { name, goal, isPublic }) => {
     try {
-      const response = await fetch(`${APIURL}/routines`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          name: name,
-          goal: goal,
-          isPublic: isPublic,
+        const response = await fetch(`${APIURL}/routines`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: name,
+                goal: goal,
+                isPublic: isPublic,
+            })
         })
-      })
-      const results = response.json();
-      return results
+        const results = response.json();
+        return results
     } catch (ex) {
-      console.log('Error adding new routine')
+        console.log('Error adding new routine')
     }
-  }
-  const CreateRoutine  = ({token}) => {
+}
+const CreateRoutine = ({ token }) => {
     const [name, setName] = useState('')
     const [goal, setGoal] = useState('')
     const [isPublic, setIsPublic] = useState(false)
@@ -41,7 +41,7 @@ const addNewRoutine = async (token, { name, goal, isPublic }) => {
     }
     if (token !== '') {
         return (
-            <div className="ms-5 mb-2" >
+            <div className="createRoutines" >
                 <header>
                     <h3>Add Routine</h3>
                 </header>
@@ -55,14 +55,14 @@ const addNewRoutine = async (token, { name, goal, isPublic }) => {
                     <div className="row mb-2">
                         <label htmlFor="goal" className="col-form-label">Goal:</label>
                         <div className="col-sm-5">
-                            <textarea id="goal"  className="form-control" onChange={event => setGoal(event.target.value)} required></textarea>
+                            <textarea id="goal" className="form-control" onChange={event => setGoal(event.target.value)} required></textarea>
                         </div>
                     </div>
                     <div className="form-check mb-3">
-                        <input  className="form-check-input" type="checkbox" id="isPublic" 
-                        onChange={event => event.target.value === 'on' ? 
-                        setIsPublic(true) :
-                        setIsPublic(false)}></input>
+                        <input className="form-check-input" type="checkbox" id="isPublic"
+                            onChange={event => event.target.value === 'on' ?
+                                setIsPublic(true) :
+                                setIsPublic(false)}></input>
                         <label htmlFor="isPublic" className="form-check-label">Make Routine Public?</label>
                     </div>
                     <button type="submit" className="btn btn-primary me-2">Add Routine</button>

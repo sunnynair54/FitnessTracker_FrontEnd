@@ -55,7 +55,7 @@ const CreateActivities = ({ token }) => {
     return (
         <div className='createActivityCenter'>
             <form onSubmit={handleSubmit}>
-                <div className="postActivity">
+                <div className="activityName">
                     <label className="nameLabel" htmlFor="name">Name:</label>
                     <input className="nameInput"
                         type="text"
@@ -65,7 +65,7 @@ const CreateActivities = ({ token }) => {
                     />
                 </div>
 
-                <div className="ActivityCreate">
+                <div className="activityDescription">
                     <label className="descriptionLabel" htmlFor="description">Description:</label>
                     <input className="descriptionInput"
                         type="text"
@@ -75,7 +75,7 @@ const CreateActivities = ({ token }) => {
                     />
                 </div>
                 <div className="newActivityError">{error}</div>
-                <button className="createButton" type="submit">Post!</button>
+                <button className="createButton" type="submit">Create Activity!</button>
             </form>
         </div>
     )

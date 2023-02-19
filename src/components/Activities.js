@@ -27,41 +27,15 @@ const Activities = ({ token }) => {
 
   };
 
-  //   console.log(posts.title);
-
-  // const handleDelete = async (id) => {
-  //   await postDelete(id)
-  //   fetchActivities()
-  // }
-
-  // const activityDelete = async (id) => {
-  //   try {
-  //     const response = await fetch(`${APIURL}/posts/${id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-
-  //     const deletedPost = await response.json();
-  //     console.log(deletedPost);
-  //   } catch (error) {
-  //     console.log('err'.err);
-  //   }
-  // };
-
-
-
-
 
   return (
     <>
       {token !== null && <Link className="CreateActivityLink" to="/CreateActivities">Create New Activity</Link>}
-      <div className="postBody">
+      <div className="activityBody">
         {
           activities.reverse().map((activity) => {
             return (
+
               <div className="activity_id" key={activity.id}>
                 <h2 className="activityName">Name: {activity.name}</h2>
                 <h3 className="activityDescription"> Description: {activity.description}</h3>

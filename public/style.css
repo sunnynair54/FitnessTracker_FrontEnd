@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Reem+Kufi+Ink&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Creepster', cursive;
+    font-family: 'Merriweather', serif;
     background-image: url(https://i.pinimg.com/originals/96/6a/7b/966a7b0fa51a0e145aa6b2fe8cd56923.jpg);
     color: white;
 }
 
 .mainTitle {
     font-size: xx-large;
-    color: rgb(198, 80, 80);
+    color: rgb(197, 114, 230);
 
 }
 
@@ -26,7 +25,7 @@
 
 }
 
-.posts_info {
+.activityBody {
     border: 2px solid rgb(255, 255, 255);
     color: rgb(214, 206, 206);
     margin: auto;
@@ -36,27 +35,37 @@
     justify-content: space-evenly
 }
 
-.postTitle,
-.postAuthor,
-.postPrice,
-.postDescription {
+.logoutRoutines {
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(214, 206, 206);
+    margin: auto;
+
+    width: 50%;
+    padding: 20px;
+    justify-content: space-evenly
+}
+
+.activity_id,
+.activityName,
+.activityDescription {
 
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .HomeLink,
-.PostsLink,
-.ProfileLink,
+.RoutineLink,
+.ActivitiesLink,
+.MyRoutinesLink,
 .Logbutton {
-    color: rgb(198, 80, 80);
+    color: rgb(249, 235, 78);
     width: auto;
 
 }
 
 
 .logout {
-    color: rgb(93, 79, 250);
+    color: rgb(252, 72, 72);
     font-size: large;
     cursor: pointer;
 }
@@ -73,7 +82,7 @@
 }
 
 .CreatePostLink {
-    color: rgb(198, 80, 80);
+    color: rgb(107, 230, 91);
     margin-left: 5%;
     font-size: larger;
     cursor: pointer;
@@ -83,7 +92,7 @@
 
 
 .username {
-    color: rgb(198, 80, 80);
+    color: rgb(78, 64, 234);
 }
 
 .messageButton {
@@ -112,6 +121,7 @@
 .signupMessage {
     padding-left: 10px;
     color: rgb(198, 80, 80);
+    font-size: medium;
 }
 
 .signupLink {
@@ -130,8 +140,38 @@
 
 }
 
-.user,
-.password {
+.createRoutines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+
+}
+
+.routineName,
+.routineGoal {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.createActivityCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: grey;
+
+    border: 2px solid white;
+}
+
+.activityName,
+.activityDescription {
     display: flex;
     flex-direction: column;
     padding: 8px;
@@ -156,7 +196,7 @@
 
 .passInput,
 .userInput {
-    color: rgb(198, 80, 80);
+    color: rgb(232, 232, 232);
     font-size: large;
 }
 
@@ -169,7 +209,7 @@
 }
 
 .logInButton {
-    color: rgb(198, 80, 80);
+    color: rgb(26, 33, 245);
     float: right;
     padding-right: 5px;
     font-size: x-large;
@@ -177,7 +217,7 @@
 }
 
 .logInButton:hover {
-    color: red;
+    color: rgb(253, 2, 2);
 }
 
 .createButton {
@@ -240,7 +280,7 @@
 .welcomeBanner,
 .secondBanner,
 .descriptionBanner {
-    color: rgb(198, 80, 80);
+    color: rgb(231, 124, 250);
     padding: 10px;
 
 }
@@ -252,7 +292,7 @@
 }
 
 .logInSignUpButton {
-    color: lightblue;
+    color: rgb(255, 246, 80);
 }
 
 .logInSignUp2 {
@@ -265,7 +305,7 @@
 }
 
 .logInSignUpButton2 {
-    color: lightblue;
+    color: rgb(238, 253, 108);
 }
 
 .sendAMessage {

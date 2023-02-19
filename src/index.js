@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import { Home, Login, MyRoutines, Signup, CreateRoutine, CreateActivities, Activities, Send_a_message } from "./components";
+import { Home, Login, MyRoutines, Signup, CreateRoutine, CreateActivities, Activities } from "./components";
 import Routines from "./components/Routines";
 
 
@@ -37,7 +37,7 @@ const App = () => {
               <div><Link className="HomeLink" to="/Home">Home</Link></div>
               <div><Link className="RoutineLink" to="/Routines">Routines</Link></div>
               <div><Link className="ActivitiesLink" to="/Activities">Activities</Link></div>
-              <Link to="/MyRoutines"><div className="MyRoutineLink">
+              <Link to="/MyRoutines"><div className="MyRoutinesLink">
                 {token === null ? '' : 'MyRoutines'}
               </div></Link>
               <Link to="/Login">

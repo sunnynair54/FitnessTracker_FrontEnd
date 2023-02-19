@@ -58,7 +58,7 @@ const Signup = ({ setToken }) => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button className="createButton" type="submit">Create Stranger!</button>
+        <button className="createButton" type="submit">Create account!</button>
         <div className="signInError">{error}</div>
         <div className="logInSignUp2"><Link className="logInSignUpButton2" to="/Login">Login</Link></div>
       </form>
