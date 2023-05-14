@@ -65,8 +65,6 @@ const MyRoutines = ({ routines, setRoutines }) => {
     }
   }
 
-
-
   const handleDelete = async (routineIdToDelete) => {
     const response = await fetch(`${APIURL}/api/routines/${routineIdToDelete}`, {
       method: "DELETE",
@@ -91,7 +89,7 @@ const MyRoutines = ({ routines, setRoutines }) => {
         <h1>Create your own Routines</h1>
         <form onSubmit={handleRoutinesSubmit}>
           <div className="routineName">
-            <label htmlFor="RoutineName">Routine Name</label>
+            <label htmlFor="RoutineName">Routines Name</label>
             <input type="text" placeholder="Name"
               value={name}
               onChange={(event) => { setName(event.target.value) }}>

@@ -30,7 +30,6 @@ const Login = ({ setToken }) => {
       if (json.error) {
         throw json.error;
       }
-
       alert("Login successful");
       setToken(json.token);
       history.push("/Routines");
